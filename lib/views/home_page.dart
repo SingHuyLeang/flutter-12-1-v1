@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:orif_coffee/views/components/styles.dart';
 
 import '../controller/product_controller.dart';
+import 'components/text_field.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,7 +37,9 @@ class _HomePageState extends State<HomePage> {
               AppText(
                 "Find your favorite & take your order",
                 fontSize: 14,
-              )
+              ),
+              const SizedBox(height: 32),
+              AppTextField(),
             ],
           ),
         ),

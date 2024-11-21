@@ -6,6 +6,7 @@ class AppColors {
   static const Color dark = Color(0xFF070707);
 }
 
+// ignore: non_constant_identifier_names
 Text AppText(
   String text, {
   double? fontSize,
@@ -20,5 +21,4 @@ Text AppText(
         fontWeight: fontWeight,
         color: color ?? AppColors.dark,
       ),
-      textDirection: TextDirection.rtl,
     );
