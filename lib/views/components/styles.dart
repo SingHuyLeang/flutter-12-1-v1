@@ -12,6 +12,7 @@ Text AppText(
   double? fontSize,
   FontWeight? fontWeight,
   Color? color,
+  TextAlign? textAlign,
 }) =>
     Text(
       text,
@@ -21,4 +22,5 @@ Text AppText(
         fontWeight: fontWeight,
         color: color ?? AppColors.dark,
       ),
+      textAlign: textAlign,
     );
