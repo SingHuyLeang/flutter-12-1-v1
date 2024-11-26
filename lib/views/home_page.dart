@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:orif_coffee/views/components/app_slider.dart';
+import 'package:orif_coffee/views/components/custom_track_shape.dart';
 import 'package:orif_coffee/views/components/styles.dart';
 
 import '../controller/product_controller.dart';
@@ -61,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.yellow[300],
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -104,22 +107,15 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
-                                    child: SliderTheme(
-                                      data: SliderTheme.of(context).copyWith(
-                                        trackShape: CustomTrackShape(),
-                                      ),
-                                      child: Slider(
-                                        min: 0,
-                                        max: 100,
-                                        value: 50,
-                                        onChanged: (value) {},
-                                      ),
+                                    child: AppSlider(
+                                      onChanged: (value) {
+                                        log("value = $value");
+                                      },
                                     ),
                                   ),
                                   const SizedBox(width: 10),
@@ -129,6 +125,27 @@ class _HomePageState extends State<HomePage> {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
                                     color: AppColors.primary,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  AppText(
+                                    "\$ ${productCtrl.products[index].price[0]}",
+                                  ),
+                                  Row(
+                                    children: [
+                                      // decrement
+                                      Image.asset("assets/images/remove.png"),
+                                      const SizedBox(width: 10),
+                                      // qty
+                                      AppText(0.toString()),
+                                      const SizedBox(width: 10),
+                                      // increment
+                                      Image.asset("assets/images/plus.png"),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -145,25 +162,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-}
-
-class CustomTrackShape extends RoundedRectSliderTrackShape {
-  @override
-  Rect getPreferredRect({
-    required RenderBox parentBox,
-    Offset offset = Offset.zero,
-    required SliderThemeData sliderTheme,
-    bool isEnabled = false,
-    bool isDiscrete = false,
-  }) {
-    // Return a rectangle that spans the entire width of the Slider's parent widget
-    final double trackHeight = sliderTheme.trackHeight ?? 2;
-    final double trackLeft = offset.dx;
-    final double trackTop =
-        offset.dy + (parentBox.size.height - trackHeight) / 2;
-    final double trackWidth = parentBox.size.width;
-
-    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
