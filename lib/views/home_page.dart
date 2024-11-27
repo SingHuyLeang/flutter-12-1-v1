@@ -17,14 +17,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final productCtrl = ProductController();
 
-  final sugar = <double>[];
+  final sugars = <double>[];
+  final sizes = <String>[];
+
+  int i = 0;
 
   @override
   void initState() {
     super.initState();
-    sugar.clear();
+    sugars.clear();
     for (var i = 0; i < productCtrl.products.length; i++) {
-      sugar.add(0);
+      sugars.add(0);
+      sizes.add("");
     }
   }
 
@@ -106,9 +110,17 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 15,
                                   ),
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () => setState(() {
+                                      if (i <= 2) {
+                                        i++;
+                                      } else {
+                                        i = 0;
+                                      }
+                                      sizes[index] =
+                                          productCtrl.products[index].sizes[i];
+                                    }),
                                     child: AppText(
-                                      productCtrl.products[index].sizes[0],
+                                      sizes[index].isEmpty ? productCtrl.products[index].sizes[0] : sizes[index],
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
                                       color: AppColors.primary,
@@ -123,13 +135,13 @@ class _HomePageState extends State<HomePage> {
                                   Expanded(
                                     child: AppSlider(
                                       onChanged: (value) => setState(() {
-                                        sugar[index] = value;
+                                        sugars[index] = value;
                                       }),
                                     ),
                                   ),
                                   const SizedBox(width: 10),
                                   AppText(
-                                    sugar[index].toStringAsFixed(0),
+                                    sugars[index].toStringAsFixed(0),
                                     textAlign: TextAlign.right,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
