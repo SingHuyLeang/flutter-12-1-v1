@@ -1,9 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:orif_coffee/views/components/app_slider.dart';
-import 'package:orif_coffee/views/components/custom_track_shape.dart';
 import 'package:orif_coffee/views/components/styles.dart';
 
 import '../controller/product_controller.dart';
@@ -18,6 +16,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final productCtrl = ProductController();
+
+  final sugar = <double>[];
+
+  @override
+  void initState() {
+    super.initState();
+    sugar.clear();
+    for (var i = 0; i < productCtrl.products.length; i++) {
+      sugar.add(0);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,14 +122,14 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Expanded(
                                     child: AppSlider(
-                                      onChanged: (value) {
-                                        log("value = $value");
-                                      },
+                                      onChanged: (value) => setState(() {
+                                        sugar[index] = value;
+                                      }),
                                     ),
                                   ),
                                   const SizedBox(width: 10),
                                   AppText(
-                                    '50',
+                                    sugar[index].toStringAsFixed(0),
                                     textAlign: TextAlign.right,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
