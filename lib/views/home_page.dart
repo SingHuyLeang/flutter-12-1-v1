@@ -1,7 +1,11 @@
 import 'dart:developer';
+import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:orif_coffee/views/components/app_slider.dart';
+import 'package:orif_coffee/views/components/counter.dart';
 import 'package:orif_coffee/views/components/styles.dart';
 
 import '../controller/product_controller.dart';
@@ -19,8 +23,9 @@ class _HomePageState extends State<HomePage> {
 
   final sugars = <double>[];
   final sizes = <String>[];
+  final qties = <int>[];
 
-  int i = 0;
+  int i = 0, j = 0;
 
   @override
   void initState() {
@@ -29,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     for (var i = 0; i < productCtrl.products.length; i++) {
       sugars.add(0);
       sizes.add("");
+      qties.add(0);
     }
   }
 
@@ -111,16 +117,17 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   GestureDetector(
                                     onTap: () => setState(() {
-                                      if (i <= 2) {
+                                      if (i < 2) {
                                         i++;
                                       } else {
                                         i = 0;
                                       }
-                                      sizes[index] =
-                                          productCtrl.products[index].sizes[i];
+                                      sizes[index] = productCtrl.products[index].sizes[i];
                                     }),
                                     child: AppText(
-                                      sizes[index].isEmpty ? productCtrl.products[index].sizes[0] : sizes[index],
+                                      sizes[index].isEmpty
+                                          ? productCtrl.products[index].sizes[0]
+                                          : sizes[index],
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16,
                                       color: AppColors.primary,
@@ -154,19 +161,16 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   AppText(
-                                    "\$ ${productCtrl.products[index].price[0]}",
+                                    productCtrl.findFinalPrice(
+                                      index,
+                                      sizes[index],
+                                      qties[index],
+                                    ),
                                   ),
-                                  Row(
-                                    children: [
-                                      // decrement
-                                      Image.asset("assets/images/remove.png"),
-                                      const SizedBox(width: 10),
-                                      // qty
-                                      AppText(0.toString()),
-                                      const SizedBox(width: 10),
-                                      // increment
-                                      Image.asset("assets/images/plus.png"),
-                                    ],
+                                  Counter(
+                                    onChanged: (value) => setState(() {
+                                      qties[index] = value;
+                                    }),
                                   ),
                                 ],
                               ),
