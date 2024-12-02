@@ -43,8 +43,8 @@ app.*.map.json
 /android/app/release
 
 # Project related
-macos/
-web/
-windows/
-linux/
-test/
+/macos/
+/web/
+/windows/
+/linux/
+/test/

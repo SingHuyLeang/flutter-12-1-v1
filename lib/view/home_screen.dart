@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 16),
               Text('This is a simple Flutter application.'),
-              SizedBox(height: 16),
             ],
           ),
         ),
