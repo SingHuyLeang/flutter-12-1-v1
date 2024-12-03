@@ -1,4 +1,5 @@
 import 'package:design_up/view/home_screen.dart';
+import 'package:design_up/view/widgets/label.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,14 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.grey[800],
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColor.dark,
           titleTextStyle: TextStyle(
-            color: Colors.grey[200],
+            color: AppColor.light,
             fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontFamily: Onest.semiBold,
           ),
-          centerTitle: true,
           elevation: 10,
         ),
         useMaterial3: true,
