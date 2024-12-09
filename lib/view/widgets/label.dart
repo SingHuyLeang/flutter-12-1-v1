@@ -24,17 +24,23 @@ class Label extends StatelessWidget {
     this.fontFamily = Onest.regular,
     this.fontSize = 15,
     this.color = AppColor.dark,
+    this.overflow = TextOverflow.ellipsis,
+    this.maxLines,
   });
 
   final String text;
   final String? fontFamily;
+  final TextOverflow? overflow;
   final double? fontSize;
   final Color? color;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: overflow,
+      maxLines: maxLines,
       style: lablStyle(
         fontFamily: fontFamily,
         fontSize: fontSize,
