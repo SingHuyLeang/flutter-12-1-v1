@@ -4,28 +4,33 @@ class ProductController {
   // Integration with state management
   final List<ProductModel> products = <ProductModel>[
     ProductModel(
-        id: 1,
-        name: 'បុកល្ហុងក្ដាមប្រៃហិរសោះដល់ឋានព្រះច័ន្ទ',
-        price: 10.99,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt corrupti consequuntur ipsum nam ducimus, est, veritatis, velit ad minima facilis perferendis soluta impedit officia sint vero deleniti. Maiores, iste cupiditate. Optio nulla, enim reiciendis obcaecati deserunt beatae vel error, sunt sit dicta modi. Quasi eaque labore provident dicta veniam sit? Iste alias ullam magni id accusamus corrupti debitis sint. Blanditiis! Quae atque laboriosam enim eaque nostrum eos sapiente id deserunt reprehenderit ipsum placeat aliquam ea cum quasi modi quibusdam facilis nulla cumque adipisci, dolore laborum culpa! Necessitatibus accusamus odit voluptas!",
-        image:
-            "https://img.freepik.com/free-photo/thai-papaya-salad-white-plate-with-chili-lime-garlic_1150-20246.jpg?t=st=1733118675~exp=1733122275~hmac=cc502654760e9972dca9fff358c6d5a7f9ff682e2aee34efec145c1adebe4239&w=1060"),
+      id: 1,
+      name: 'Kang Kep Baob (Stuffed Frog)',
+      price: 10.99,
+      description:
+          """The first amazing Cambodian street food that deserves to be on our list is Kang Kep Baob, or stuffed frog. As its name means, the frog is filled with a blend of ingredients.
+            The mixture of stuff includes chopped frog meat with pork, coconut, peanuts, saffron, and citronella. These are stuffed inside the frog skin, making it fat and funny.
+            The food needs to be dried under the sun for 15 minutes and then grilled or fried. The hot stuffed frog is served with a delicious smell and tender texture.""",
+      image: "assets/images/kang-kep-baob.jpg",
+    ),
     ProductModel(
-        id: 2,
-        name: 'Product 2',
-        price: 15.99,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt corrupti consequuntur ipsum nam ducimus, est, veritatis, velit ad minima facilis perferendis soluta impedit officia sint vero deleniti. Maiores, iste cupiditate. Optio nulla, enim reiciendis obcaecati deserunt beatae vel error, sunt sit dicta modi. Quasi eaque labore provident dicta veniam sit? Iste alias ullam magni id accusamus corrupti debitis sint. Blanditiis! Quae atque laboriosam enim eaque nostrum eos sapiente id deserunt reprehenderit ipsum placeat aliquam ea cum quasi modi quibusdam facilis nulla cumque adipisci, dolore laborum culpa! Necessitatibus accusamus odit voluptas!",
-        image:
-            "https://img.freepik.com/free-photo/sauteed-mushrooms-with-pumpkin-sweet-pepper_2829-10315.jpg?t=st=1733118615~exp=1733122215~hmac=b6914fbcc67e53bf09f2284a31bac4a20e0c31a4b88acf66b67e660b18aca999&w=1060"),
+      id: 2,
+      name: 'A-Ping (Deep-fried Tarantula)',
+      price: 15.99,
+      description:
+          """You'll be surprised to see the local fried insects on the streets, yet it's part of their street food. A-Ping, the deep-fried spider, is a typical example. Other versions of this dish are silkworms, cockroaches, crickets, grasshoppers, beetles, etc.   
+            These insects became edible due to the terrible famine that Cambodians experienced in the 1970s. They were so starving that insects were their only source of food.
+            Even though it's an uncommon dish, it received more positive feedback than you may have thought. The crispy exterior contrasts with the soft center said to be "rather like a cross between chicken and cod", offering an unforgettable experience.""",
+      image: "assets/images/a-ping.jpg",
+    ),
     ProductModel(
-        id: 3,
-        name: 'Product 3',
-        price: 20.99,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt corrupti consequuntur ipsum nam ducimus, est, veritatis, velit ad minima facilis perferendis soluta impedit officia sint vero deleniti. Maiores, iste cupiditate. Optio nulla, enim reiciendis obcaecati deserunt beatae vel error, sunt sit dicta modi. Quasi eaque labore provident dicta veniam sit? Iste alias ullam magni id accusamus corrupti debitis sint. Blanditiis! Quae atque laboriosam enim eaque nostrum eos sapiente id deserunt reprehenderit ipsum placeat aliquam ea cum quasi modi quibusdam facilis nulla cumque adipisci, dolore laborum culpa! Necessitatibus accusamus odit voluptas!",
-        image:
-            "https://img.freepik.com/free-photo/pad-thai-white-plate-with-lemon-eggs-seasoning-wooden-table_1150-21191.jpg?t=st=1733118596~exp=1733122196~hmac=018442a11ea8dee7f09a463d7532beaef6ba52cbce485e8424b7d1dc555ade55&w=1060"),
+      id: 3,
+      name: 'Num Pang (Cambodian Sandwich)',
+      price: 20.99,
+      description:
+          """Talking about the street food Khmer, we can't skip Num Pang, also known as the Cambodian sandwich. Its carts are almost everywhere, such as outside the market or next to office buildings. You can spot it by the baguette, a bread style that originated in France during the French colonial period, with trays of ingredients.
+              This type of street bread contains nutrition, including starch, protein, and fiber from vegetables. The meat can be ham or pate, and the veggies are various such as cucumbers, carrots, onions, and chives.""",
+      image: "assets/images/num-pang.jpg",
+    ),
   ];
 }
