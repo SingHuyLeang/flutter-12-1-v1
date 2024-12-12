@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class InputText extends StatelessWidget {
-  const InputText({super.key, this.onSubmitted, this.onTap, this.controller});
+  const InputText({super.key, this.onSubmitted, this.onTap, this.controller, this.onChanged});
   final TextEditingController? controller;
   final void Function(String p1)? onSubmitted;
   final void Function()? onTap;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class InputText extends StatelessWidget {
       child: TextField(
         controller: controller,
         style: lablStyle(),
+        onChanged: onChanged,
         onSubmitted: onSubmitted,
         decoration: InputDecoration(
           border: InputBorder.none,

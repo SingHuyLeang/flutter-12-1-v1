@@ -1,13 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:design_up/controller/product_controller.dart';
-import 'package:design_up/model/product_model.dart';
 import 'package:design_up/view/detail_screen.dart';
 import 'package:design_up/view/widgets/input_text.dart';
 import 'package:design_up/view/widgets/label.dart';
 import 'package:design_up/view/widgets/product_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,10 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final textCtrl = TextEditingController();
-  void Function()? onTap;
-  void Function(String)? onSubmitted;
-
   final controller = ProductController();
 
   @override
@@ -54,35 +46,64 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 13,
               ),
               const Gap(4),
-              InputText(controller: textCtrl),
+              InputText(
+                controller: controller.textCtrl,
+                onTap: () => setState(() {
+                  controller.filterProducts();
+                }),
+                onSubmitted: (_) => setState(() {
+                  controller.filterProducts();
+                }),
+                onChanged: (_) => setState(() {
+                  controller.filterProducts();
+                }),
+              ),
               const Gap(32),
-              const Label(
-                text: 'All Products',
+              Label(
+                text:
+                    'All Products ${controller.textCtrl.text.isNotEmpty ? "Of \"${controller.textCtrl.text}\"" : ""}',
                 fontFamily: Onest.light,
                 fontSize: 13,
               ),
               const Gap(16),
-              GridView.builder(
-                itemCount: controller.products.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: 260,
-                  mainAxisSpacing: 32,
-                  crossAxisSpacing: 24,
-                ),
-                itemBuilder: (context, index) => ProductCard(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          DetailScreen(product: controller.products[index]),
+              if (controller.results.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.only(top: 80.0),
+                  child: Center(
+                    child: Label(
+                      text: 'Not Found',
+                      fontFamily: Onest.bold,
                     ),
                   ),
-                  product: controller.products[index],
+                )
+              else
+                GridView.builder(
+                  itemCount: controller.results.isEmpty
+                      ? controller.products.length
+                      : controller.results.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisExtent: 260,
+                    mainAxisSpacing: 32,
+                    crossAxisSpacing: 24,
+                  ),
+                  itemBuilder: (context, index) {
+                    final product = controller.results.isEmpty
+                        ? controller.products[index]
+                        : controller.results[index];
+                    return ProductCard(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailScreen(product: product),
+                        ),
+                      ),
+                      product: product,
+                    );
+                  },
                 ),
-              ),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:design_up/model/product_model.dart';
 import 'package:design_up/view/widgets/label.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +17,6 @@ class ProductCard extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          //color: Colors.amber,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: const Color(0x92EEEEEE),

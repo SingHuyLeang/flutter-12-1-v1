@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:design_up/model/product_model.dart';
+import 'package:flutter/material.dart';
 
 class ProductController {
   // Integration with state management
@@ -33,4 +36,19 @@ class ProductController {
       image: "assets/images/num-pang.jpg",
     ),
   ];
+  final results = <ProductModel>[];
+  final textCtrl = TextEditingController();
+
+  void filterProducts() {
+    final filterText = textCtrl.text.toLowerCase();
+    results.clear();
+    results.addAll(
+      products.where(
+        (product) =>
+            product.name.toLowerCase().contains(filterText.toLowerCase()),
+      ),
+    );
+
+    log(results[0].name);
+  }
 }
