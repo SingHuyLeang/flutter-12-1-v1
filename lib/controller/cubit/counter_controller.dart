@@ -1,8 +1,15 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 
-class CounterController extends Cubit<int> {
-  CounterController() : super(5);
+class CounterController extends ChangeNotifier {
+  int counter = 0;
 
-  void increment() => emit(state + 1);
-  void decrement() => emit(state - 1);
+  void increment() {
+    counter++;
+    notifyListeners();
+  }
+
+  void decrement() {
+    counter--;
+    notifyListeners();
+  }
 }

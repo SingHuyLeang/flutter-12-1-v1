@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:state_management_test/controller/cubit/counter_controller.dart';
 import 'package:state_management_test/views/my_next_page.dart';
 
@@ -11,8 +12,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterController, int>(
-      builder: (cubit, counter) {
+    return Consumer<CounterController>(
+      builder: (_, controller, widget) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -26,7 +27,7 @@ class MyHomePage extends StatelessWidget {
                   'You have pushed the button this many times:',
                 ),
                 Text(
-                  '$counter',
+                  '${controller.counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 64),
@@ -48,7 +49,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => cubit.read<CounterController>().increment(),
+            onPressed: () => controller.increment(),
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
