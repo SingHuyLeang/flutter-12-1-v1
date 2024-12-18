@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state_management_test/controller/cubit/counter_controller.dart';
+import 'package:state_management_test/views/my_next_page.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
@@ -26,6 +28,21 @@ class MyHomePage extends StatelessWidget {
                 Text(
                   '$counter',
                   style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 64),
+                CupertinoButton(
+                  color: Colors.deepPurple[200],
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyNextPage(
+                        title: "Flutter Demo Next Page",
+                      ),
+                    ),
+                  ),
+                  child: const Text(
+                    'Watch the next page.',
+                  ),
                 ),
               ],
             ),
