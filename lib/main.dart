@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:state_management_test/controller/cubit/counter_controller.dart';
+import 'package:state_management_test/controller/counter_controller.dart';
 import 'package:state_management_test/views/my_home_page.dart';
 
 void main() {
