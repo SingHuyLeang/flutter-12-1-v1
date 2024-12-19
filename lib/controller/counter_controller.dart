@@ -1,19 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CounterController extends ChangeNotifier {
-  int counter = 0;
+class CounterController extends GetxController {
+  RxInt counter = 0.obs;
 
   void increment() {
-    counter++;
-    notifyListeners();
+    counter.value++;
+    update();
   }
 
   void decrement() {
-    counter--;
-    notifyListeners();
+    counter.value--;
+    update();
   }
-
-
-  
-
 }

@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:state_management_test/controller/counter_controller.dart';
 import 'package:state_management_test/views/my_next_page.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
+  MyHomePage({super.key, required this.title});
 
   final String title;
+  final state = Get.put(CounterController());
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CounterController>(
-      builder: (_, controller, widget) {
+    return GetBuilder<CounterController>(
+      builder: (state) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
                   'You have pushed the button this many times:',
                 ),
                 Text(
-                  '${controller.counter}',
+                  '${state.counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 64),
@@ -36,7 +36,7 @@ class MyHomePage extends StatelessWidget {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyNextPage(
+                      builder: (context) => MyNextPage(
                         title: "Flutter Demo Next Page",
                       ),
                     ),
@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => controller.increment(),
+            onPressed: () => state.increment(),
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),

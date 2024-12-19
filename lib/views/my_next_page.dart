@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:state_management_test/controller/counter_controller.dart';
 
 class MyNextPage extends StatelessWidget {
-  const MyNextPage({super.key, required this.title});
+  MyNextPage({super.key, required this.title});
 
   final String title;
 
+  final state = Get.find<CounterController>();
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<CounterController>(builder: (_, controller, widget) {
-      return Scaffold(
+    return Obx(
+      () => Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(title),
@@ -24,18 +25,18 @@ class MyNextPage extends StatelessWidget {
                 'You have pushed the button this many times:',
               ),
               Text(
-                '${controller.counter}',
+                '${state.counter}',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => controller.decrement(),
+          onPressed: () => state.decrement(),
           tooltip: 'Decrement',
           child: const Icon(Icons.remove),
         ),
-      );
-    });
+      ),
+    );
   }
 }
