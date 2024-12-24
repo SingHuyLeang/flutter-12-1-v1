@@ -4,6 +4,7 @@ class ProductModel {
   String description;
   double price;
   String image;
+  bool favorite;
 
   ProductModel({
     required this.id,
@@ -11,5 +12,6 @@ class ProductModel {
     required this.description,
     required this.price,
     required this.image,
+    this.favorite = false,
   });
 }

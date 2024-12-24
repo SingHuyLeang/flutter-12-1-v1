@@ -17,9 +17,8 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<ProductController, List<ProductModel>>(
       builder: (context, products) {
         final productController = context.read<ProductController>();
-        final isSearchActive = productController.textCtrl.text.isNotEmpty;
-        final displayedProducts =
-            isSearchActive ? productController.results : products;
+        final isSearchActive    = productController.textCtrl.text.isNotEmpty;
+        final displayedProducts = isSearchActive ? productController.results : products;
 
         return Scaffold(
           backgroundColor: Colors.grey[100],
