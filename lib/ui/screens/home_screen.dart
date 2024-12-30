@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/ui/colors/colors.dart';
 import 'package:note_app/ui/components/app_text_field.dart';
 import 'package:note_app/ui/typography/typographies.dart';
-import 'package:note_app/utils/resizing/resizing.dart';
+import 'package:note_app/utils/devices/device_utility.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
