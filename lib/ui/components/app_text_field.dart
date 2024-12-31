@@ -4,35 +4,67 @@ import 'package:note_app/ui/colors/colors.dart';
 import 'package:note_app/ui/typography/typographies.dart';
 
 class AppTextField extends StatelessWidget {
-  const AppTextField({super.key});
+  const AppTextField({
+    super.key,
+    this.isBlankStyle = false,
+    this.height,
+    this.hintText,
+    this.style,
+    this.hintStyle,
+    this.keyboardType,
+    this.maxLines = 1,
+    this.maxLength,
+  });
+
+  final bool isBlankStyle;
+  final double? height;
+  final String? hintText;
+  final TextStyle? style, hintStyle;
+  final TextInputType? keyboardType;
+  final int? maxLines, maxLength;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 35,
+      height: height,
       padding: const EdgeInsets.only(right: 10),
       margin: const EdgeInsets.symmetric(horizontal: 10),
       alignment: Alignment.centerLeft,
-      decoration: BoxDecoration(
-        color: AppColors.primary.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(6),
-      ),
+      decoration: !isBlankStyle
+          ? BoxDecoration(
+              color: AppColors.primary.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(6),
+            )
+          : null,
       child: TextField(
-        style: typographies.paragraph(color: AppColors.dark),
+        keyboardType: keyboardType,
+        maxLines: maxLines,
+        maxLength: maxLength,
+        buildCounter: (
+          context, {
+          required currentLength,
+          required isFocused,
+          required maxLength,
+        }) =>
+            null,
+        style: style ?? typographies.paragraph(color: AppColors.dark),
         decoration: InputDecoration(
           border: InputBorder.none,
           contentPadding: const EdgeInsets.only(bottom: 13),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: SvgPicture.asset(
-              'assets/icons/search.svg',
-            ),
-          ),
-          hintText: "Search",
-          hintStyle: typographies.paragraph(
-            color: AppColors.dark.withOpacity(0.6),
-          ),
+          prefixIcon: !isBlankStyle
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: SvgPicture.asset(
+                    'assets/icons/search.svg',
+                  ),
+                )
+              : null,
+          hintText: hintText,
+          hintStyle: hintStyle ??
+              typographies.paragraph(
+                color: AppColors.dark.withOpacity(0.6),
+              ),
         ),
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:note_app/ui/colors/colors.dart';
 import 'package:note_app/ui/components/app_text_field.dart';
+import 'package:note_app/ui/screens/form_screen.dart';
 import 'package:note_app/ui/typography/typographies.dart';
 import 'package:note_app/utils/devices/device_utility.dart';
 
@@ -26,10 +28,18 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: GestureDetector(
+        onTap: () => Get.to(() => FormScreen()),
+        child: CircleAvatar(
+          radius: 24,
+          backgroundColor: AppColors.primary,
+          child: SvgPicture.asset('assets/icons/task-add.svg'),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const AppTextField(),
+            const AppTextField(height: 35, hintText: "Search"),
             const SizedBox(height: 16),
             ...List.generate(
               10,
@@ -43,20 +53,20 @@ class HomeScreen extends StatelessWidget {
                 height: Resize(context).height(50),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: AppColors.primary.withOpacity(0.5),
+                  color: AppColors.primary.withOpacity(0.05),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Here my text title!",
-                      style: typographies.title(),
+                      style: typographies.paragraph(),
                       maxLines: 1,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 6),
                     Text(
                       "Here my text paragraph!",
-                      style: typographies.paragraph(),
+                      style: typographies.label(),
                       maxLines: 1,
                     ),
                   ],
