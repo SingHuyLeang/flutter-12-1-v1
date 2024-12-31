@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:note_app/ui/colors/colors.dart';
 import 'package:note_app/ui/components/app_text_field.dart';

@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
             const AppTextField(height: 35, hintText: "Search"),
             const SizedBox(height: 16),
             ...List.generate(
-              10,
+              5,
               (index) => Container(
                 width: double.infinity,
                 margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
