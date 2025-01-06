@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:note_app/data/controller/note_controller.dart';
 import 'package:note_app/ui/colors/colors.dart';
 import 'package:note_app/ui/components/app_text_field.dart';
 import 'package:note_app/ui/typography/typographies.dart';
 
 class FormScreen extends StatelessWidget {
-  const FormScreen({super.key});
+  FormScreen({super.key});
+
+  final noteCtrl = Get.find<NoteController>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class FormScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: () => Get.back(),
+                onPressed: () => noteCtrl.toBack(),
                 icon: const Icon(Icons.arrow_back_ios, size: 20),
               ),
               GestureDetector(
@@ -39,6 +42,7 @@ class FormScreen extends StatelessWidget {
           child: Column(
             children: [
               AppTextField(
+                controller: noteCtrl.txtTitleCtrl,
                 height: 35,
                 isBlankStyle: true,
                 hintText: "title",
@@ -48,8 +52,9 @@ class FormScreen extends StatelessWidget {
                     typographies.title(color: AppColors.dark.withOpacity(0.6)),
               ),
               AppTextField(
+                controller: noteCtrl.txtContentCtrl,
                 isBlankStyle: true,
-                hintText: "paragraph",
+                hintText: "Start writing...",
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
               ),

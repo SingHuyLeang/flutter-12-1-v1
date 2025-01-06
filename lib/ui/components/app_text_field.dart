@@ -14,8 +14,10 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.maxLines = 1,
     this.maxLength,
+    this.controller,
   });
 
+  final TextEditingController? controller;
   final bool isBlankStyle;
   final double? height;
   final String? hintText;
@@ -38,6 +40,7 @@ class AppTextField extends StatelessWidget {
             )
           : null,
       child: TextField(
+        controller: controller,
         keyboardType: keyboardType,
         maxLines: maxLines,
         maxLength: maxLength,
