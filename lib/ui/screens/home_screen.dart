@@ -52,8 +52,10 @@ class HomeScreen extends StatelessWidget {
                   onTap: () async => noteCtrl.viewCard(index),
                   child: Container(
                     width: double.infinity,
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 10,
+                    ),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 6,

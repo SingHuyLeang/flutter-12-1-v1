@@ -4,6 +4,7 @@ import 'package:note_app/data/controller/note_controller.dart';
 import 'package:note_app/ui/colors/colors.dart';
 import 'package:note_app/ui/components/app_text_field.dart';
 import 'package:note_app/ui/typography/typographies.dart';
+import 'package:note_app/utils/formatters/date_time_formatter.dart';
 
 class FormScreen extends StatelessWidget {
   FormScreen({super.key});
@@ -24,6 +25,14 @@ class FormScreen extends StatelessWidget {
               IconButton(
                 onPressed: () => noteCtrl.toBack(),
                 icon: const Icon(Icons.arrow_back_ios, size: 20),
+              ),
+              Text(
+                DTF(
+                  noteCtrl.isFormAdd.value
+                      ? DateTime.now()
+                      : noteCtrl.note.value.dateTime!,
+                ).toShortHumanReadable().toString(),
+                style: typographies.paragraph(),
               ),
               GestureDetector(
                 onTap: () => Get.back(),

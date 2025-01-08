@@ -31,6 +31,11 @@ class DTF {
     return DateFormat('MMM d, yyyy, h:mm a').format(dateTime);
   }
 
+  // Format as a short human-readable string (e.g., '1 Jan, 2025')
+  String toShortHumanReadable() {
+    return DateFormat('d MMM, yyyy').format(dateTime);
+  }
+
   // Static method to parse a string into DateTime based on a pattern
   static DateTime parse(String dateString, String pattern) {
     final formatter = DateFormat(pattern);
