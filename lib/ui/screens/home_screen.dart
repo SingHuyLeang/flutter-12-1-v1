@@ -11,7 +11,6 @@ import 'package:note_app/ui/screens/form_screen.dart';
 import 'package:note_app/ui/typography/typographies.dart';
 import 'package:note_app/utils/devices/device_utility.dart';
 import 'package:note_app/utils/formatters/date_time_formatter.dart';
-import 'package:popover/popover.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -33,25 +32,30 @@ class HomeScreen extends StatelessWidget {
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: PopupMenuButton<String>(
-                icon: SvgPicture.asset('assets/icons/menu-two-line.svg'),
-                onSelected: (value) => log(value),
+              child: PopupMenuButton<int>(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 2,
+                ),
+                elevation: 0,
+                color: AppColors.light,
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    value: "Sort By Name",
+                    value: 0,
                     child: Text(
-                      "Sort by Name",
-                      style: typographies.label(fontWeight: FontWeight.w500),
+                      "Sort by name",
+                      style: typographies.paragraph(),
                     ),
                   ),
                   PopupMenuItem(
-                    value: "Sort By Date",
+                    value: 1,
                     child: Text(
-                      "Sort by Date",
-                      style: typographies.label(fontWeight: FontWeight.w500),
+                      "Sort by date",
+                      style: typographies.paragraph(),
                     ),
                   ),
                 ],
+                child: SvgPicture.asset('assets/icons/menu-two-line.svg'),
               ),
             ),
           ],
