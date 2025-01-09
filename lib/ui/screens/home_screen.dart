@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +11,7 @@ import 'package:note_app/ui/screens/form_screen.dart';
 import 'package:note_app/ui/typography/typographies.dart';
 import 'package:note_app/utils/devices/device_utility.dart';
 import 'package:note_app/utils/formatters/date_time_formatter.dart';
+import 'package:popover/popover.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -31,7 +33,26 @@ class HomeScreen extends StatelessWidget {
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: SvgPicture.asset('assets/icons/menu-two-line.svg'),
+              child: PopupMenuButton<String>(
+                icon: SvgPicture.asset('assets/icons/menu-two-line.svg'),
+                onSelected: (value) => log(value),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: "Sort By Name",
+                    child: Text(
+                      "Sort by Name",
+                      style: typographies.label(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: "Sort By Date",
+                    child: Text(
+                      "Sort by Date",
+                      style: typographies.label(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -111,6 +132,42 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ListItems extends StatelessWidget {
+  const ListItems({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: ListView(
+        padding: const EdgeInsets.all(8),
+        children: [
+          InkWell(
+            onTap: () {},
+            child: Container(
+              height: 50,
+              color: Colors.amber[100],
+              child: const Center(child: Text('Entry A')),
+            ),
+          ),
+          const Divider(),
+          Container(
+            height: 50,
+            color: Colors.amber[200],
+            child: const Center(child: Text('Entry B')),
+          ),
+          const Divider(),
+          Container(
+            height: 50,
+            color: Colors.amber[300],
+            child: const Center(child: Text('Entry C')),
+          ),
+        ],
       ),
     );
   }
