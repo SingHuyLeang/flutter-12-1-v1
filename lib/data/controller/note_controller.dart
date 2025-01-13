@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:note_app/data/model/note_model.dart';
+import 'package:note_app/data/repository/impl/note_repository_impl.dart';
+import 'package:note_app/data/repository/note_repository.dart';
 import 'package:note_app/ui/screens/form_screen.dart';
 
 class NoteController extends GetxController {
+  final NoteRepository noteRepository = NoteRepositoryImpl();
+
+  @override
+  void onInit() async {
+    super.onInit();
+
+    await noteRepository.getAllNotes(null);
+  }
+
   final notes = <NoteModel>[
     NoteModel(
       id: 1,
